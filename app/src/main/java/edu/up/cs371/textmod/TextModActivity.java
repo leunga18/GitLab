@@ -11,6 +11,7 @@ import android.graphics.BitmapFactory;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.text.Editable;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,9 +22,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
+
 import java.util.ArrayList;
 
-public class TextModActivity extends ActionBarActivity implements View.OnClickListener{
+public class TextModActivity extends ActionBarActivity implements View.OnClickListener {
 
 
     protected EditText editText;
@@ -36,6 +39,14 @@ public class TextModActivity extends ActionBarActivity implements View.OnClickLi
     // instance variables containing widgets
     private ImageView imageView; // the view that shows the image
 
+    
+    protected TextView editText;
+    protected Button copyButton;
+    protected Spinner spinner;
+    private Button clearButton;
+    private Button lowerButton;
+
+    
     /**
      * @see android.app.Activity#onCreate(android.os.Bundle)
      */
@@ -50,12 +61,13 @@ public class TextModActivity extends ActionBarActivity implements View.OnClickLi
         imageView = (ImageView)findViewById(R.id.imageView);
         editText = (EditText)findViewById(R.id.editText);
         editButton = (Button)findViewById(R.id.button6);
-
+        clearButton = (Button)findViewById(R.id.button);
+        lowerButton = (Button)findViewById(R.id.button7);
 
         // Set up the spinner so that it shows the names in the spinner array resources
         //
         // get spinner object
-        Spinner spinner = (Spinner)findViewById(R.id.spinner);
+        spinner =  (Spinner)findViewById(R.id.spinner);
         // get array of strings
         String[] spinnerNames = getResources().getStringArray(R.array.spinner_names);
         // create adapter with the strings
@@ -84,6 +96,16 @@ public class TextModActivity extends ActionBarActivity implements View.OnClickLi
         // define a listener for the spinner
         spinner.setOnItemSelectedListener(new MySpinnerListener());
         editButton.setOnClickListener(this);
+        clearButton.setOnClickListener(this);
+        lowerButton.setOnClickListener(this);
+
+
+
+        copyButton = (Button)findViewById(R.id.button2);
+        copyButton.setOnClickListener(this);
+
+
+
     }
 
     /**
@@ -116,14 +138,28 @@ public class TextModActivity extends ActionBarActivity implements View.OnClickLi
 
     @Override
     public void onClick(View v) {
+        if (v.getId() == R.id.button) {
+            this.editText.setText("");
+        }
+        if (v.getId() == R.id.button7){
+            editText.setText(editText.getText().toString().toLowerCase());
+        }
+        String spinnerText = spinner.getSelectedItem().toString();
+
+        if(v.getId() == R.id.button2) {
+            editText = (TextView)findViewById(R.id.editText);
+            String textEdit = editText.getText().toString();
+            editText.setText(textEdit + spinnerText);
+        }
 
         if(v.getId() == R.id.button6) {
             Editable text = this.editText.getText();
 
             this.editText.setText(text.toString().toUpperCase());
         }
-
+        
     }
+
 
     /**
      * class that handles our spinner's selection events

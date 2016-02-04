@@ -65,6 +65,8 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:enabled="true"
+            android:clickable="true"
             android:text="@string/clear_button_text"
             android:id="@+id/button"
             android:textSize="@dimen/button_font_size"
