@@ -10,17 +10,20 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import java.util.ArrayList;
 
-public class TextModActivity extends ActionBarActivity {
+public class TextModActivity extends ActionBarActivity implements View.OnClickListener{
 
     // array-list that contains our images to display
     private ArrayList<Bitmap> images;
@@ -28,6 +31,10 @@ public class TextModActivity extends ActionBarActivity {
     // instance variables containing widgets
     private ImageView imageView; // the view that shows the image
 
+
+    private Button clearButton;
+    private Button lowerButton;
+    private EditText editText;
     /**
      * @see android.app.Activity#onCreate(android.os.Bundle)
      */
@@ -40,6 +47,9 @@ public class TextModActivity extends ActionBarActivity {
 
         // set instance variables for our widgets
         imageView = (ImageView)findViewById(R.id.imageView);
+        clearButton = (Button)findViewById(R.id.button);
+        editText = (EditText)findViewById(R.id.editText);
+        lowerButton = (Button)findViewById(R.id.button7);
 
         // Set up the spinner so that it shows the names in the spinner array resources
         //
@@ -72,6 +82,8 @@ public class TextModActivity extends ActionBarActivity {
 
         // define a listener for the spinner
         spinner.setOnItemSelectedListener(new MySpinnerListener());
+        clearButton.setOnClickListener(this);
+        lowerButton.setOnClickListener(this);
 
     }
 
@@ -101,6 +113,16 @@ public class TextModActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.button) {
+            this.editText.setText("");
+        }
+        if (v.getId() == R.id.button7){
+            editText.setText(editText.getText().toString().toLowerCase());
+        }
     }
 
     /**
