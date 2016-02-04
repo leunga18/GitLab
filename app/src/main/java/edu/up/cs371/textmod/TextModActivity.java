@@ -138,7 +138,7 @@ public class TextModActivity extends ActionBarActivity implements View.OnClickLi
         }
         String spinnerText = spinner.getSelectedItem().toString();
 
-        if(view.getId() == R.id.button2) {
+        if(v.getId() == R.id.button2) {
             editText = (TextView)findViewById(R.id.editText);
             String textEdit = editText.getText().toString();
             editText.setText(textEdit + spinnerText);
