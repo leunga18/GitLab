@@ -21,9 +21,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
+
 import java.util.ArrayList;
 
-public class TextModActivity extends ActionBarActivity implements View.OnClickListener{
+public class TextModActivity extends ActionBarActivity implements View.OnClickListener {
 
     // array-list that contains our images to display
     private ArrayList<Bitmap> images;
@@ -31,10 +33,14 @@ public class TextModActivity extends ActionBarActivity implements View.OnClickLi
     // instance variables containing widgets
     private ImageView imageView; // the view that shows the image
 
-
+    
+    protected TextView editText;
+    protected Button copyButton;
+    protected Spinner spinner;
     private Button clearButton;
     private Button lowerButton;
-    private EditText editText;
+
+    
     /**
      * @see android.app.Activity#onCreate(android.os.Bundle)
      */
@@ -54,7 +60,7 @@ public class TextModActivity extends ActionBarActivity implements View.OnClickLi
         // Set up the spinner so that it shows the names in the spinner array resources
         //
         // get spinner object
-        Spinner spinner = (Spinner)findViewById(R.id.spinner);
+        spinner =  (Spinner)findViewById(R.id.spinner);
         // get array of strings
         String[] spinnerNames = getResources().getStringArray(R.array.spinner_names);
         // create adapter with the strings
@@ -84,6 +90,13 @@ public class TextModActivity extends ActionBarActivity implements View.OnClickLi
         spinner.setOnItemSelectedListener(new MySpinnerListener());
         clearButton.setOnClickListener(this);
         lowerButton.setOnClickListener(this);
+
+
+
+        copyButton = (Button)findViewById(R.id.button2);
+        copyButton.setOnClickListener(this);
+
+
 
     }
 
@@ -123,7 +136,15 @@ public class TextModActivity extends ActionBarActivity implements View.OnClickLi
         if (v.getId() == R.id.button7){
             editText.setText(editText.getText().toString().toLowerCase());
         }
+        String spinnerText = spinner.getSelectedItem().toString();
+
+        if(view.getId() == R.id.button2) {
+            editText = (TextView)findViewById(R.id.editText);
+            String textEdit = editText.getText().toString();
+            editText.setText(textEdit + spinnerText);
+        }
     }
+
 
     /**
      * class that handles our spinner's selection events
