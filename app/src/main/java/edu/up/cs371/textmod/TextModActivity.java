@@ -39,7 +39,7 @@ public class TextModActivity extends ActionBarActivity implements View.OnClickLi
     protected Spinner spinner;
     private Button clearButton;
     private Button lowerButton;
-
+    protected Button reveseButton;
     
     /**
      * @see android.app.Activity#onCreate(android.os.Bundle)
@@ -87,6 +87,8 @@ public class TextModActivity extends ActionBarActivity implements View.OnClickLi
         }
 
         // define a listener for the spinner
+        reveseButton = (Button)findViewById(R.id.button4);
+        reveseButton.setOnClickListener(this);
         spinner.setOnItemSelectedListener(new MySpinnerListener());
         clearButton.setOnClickListener(this);
         lowerButton.setOnClickListener(this);
@@ -142,6 +144,12 @@ public class TextModActivity extends ActionBarActivity implements View.OnClickLi
             editText = (TextView)findViewById(R.id.editText);
             String textEdit = editText.getText().toString();
             editText.setText(textEdit + spinnerText);
+        }
+
+        if(v.getId() == R.id.button4){
+            String reversedS = editText.getText().toString();
+            reversedS = new StringBuffer(reversedS).reverse().toString();
+            editText.setText(reversedS);
         }
     }
 
