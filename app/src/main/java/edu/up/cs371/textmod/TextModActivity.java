@@ -39,8 +39,7 @@ public class TextModActivity extends ActionBarActivity implements View.OnClickLi
     // instance variables containing widgets
     private ImageView imageView; // the view that shows the image
 
-    
-    protected TextView editText;
+
     protected Button copyButton;
     protected Spinner spinner;
     private Button clearButton;
@@ -96,8 +95,8 @@ public class TextModActivity extends ActionBarActivity implements View.OnClickLi
         }
 
         // define a listener for the spinner
-        reveseButton = (Button)findViewById(R.id.button4);
-        reveseButton.setOnClickListener(this);
+        reverseButton = (Button)findViewById(R.id.button4);
+        reverseButton.setOnClickListener(this);
         spinner.setOnItemSelectedListener(new MySpinnerListener());
         editButton.setOnClickListener(this);
         clearButton.setOnClickListener(this);
@@ -151,7 +150,7 @@ public class TextModActivity extends ActionBarActivity implements View.OnClickLi
         String spinnerText = spinner.getSelectedItem().toString();
 
         if(v.getId() == R.id.button2) {
-            editText = (TextView)findViewById(R.id.editText);
+            editText = (EditText)findViewById(R.id.editText);
             String textEdit = editText.getText().toString();
             editText.setText(textEdit + spinnerText);
         }
