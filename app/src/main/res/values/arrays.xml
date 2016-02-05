@@ -19,9 +19,9 @@
         <item>Sleeping Kitten</item>
         <item>Dr. Andrew Nuxoll</item>
         <item>Dr. Steven Vegdahl</item>
-        <item>Kieran Losh</item>
-        <item>Austin Moehnke</item> <!--Added my name -->
-        <item>Aaron Leung</item>
+        <item>Kieran Losh </item> <!-- this is a comment -->
+        <item>Austin Moehnke</item>
+        <item>Aar on Leung</item>
         <item>Ryan Kane</item>
     </string-array>
 
