@@ -45,6 +45,7 @@ public class TextModActivity extends ActionBarActivity implements View.OnClickLi
     protected Spinner spinner;
     private Button clearButton;
     private Button lowerButton;
+    private Button reverseButton;
 
     
     /**
