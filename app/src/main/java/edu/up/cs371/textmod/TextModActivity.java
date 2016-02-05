@@ -10,6 +10,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.text.Editable;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -27,6 +28,11 @@ import java.util.ArrayList;
 
 public class TextModActivity extends ActionBarActivity implements View.OnClickListener {
 
+
+    protected EditText editText;
+    protected Button editButton;
+
+
     // array-list that contains our images to display
     private ArrayList<Bitmap> images;
 
@@ -39,7 +45,7 @@ public class TextModActivity extends ActionBarActivity implements View.OnClickLi
     protected Spinner spinner;
     private Button clearButton;
     private Button lowerButton;
-    protected Button reveseButton;
+
     
     /**
      * @see android.app.Activity#onCreate(android.os.Bundle)
@@ -55,6 +61,8 @@ public class TextModActivity extends ActionBarActivity implements View.OnClickLi
         imageView = (ImageView)findViewById(R.id.imageView);
         clearButton = (Button)findViewById(R.id.button);
         editText = (EditText)findViewById(R.id.editText);
+        editButton = (Button)findViewById(R.id.button6);
+        clearButton = (Button)findViewById(R.id.button);
         lowerButton = (Button)findViewById(R.id.button7);
 
         // Set up the spinner so that it shows the names in the spinner array resources
@@ -90,6 +98,7 @@ public class TextModActivity extends ActionBarActivity implements View.OnClickLi
         reveseButton = (Button)findViewById(R.id.button4);
         reveseButton.setOnClickListener(this);
         spinner.setOnItemSelectedListener(new MySpinnerListener());
+        editButton.setOnClickListener(this);
         clearButton.setOnClickListener(this);
         lowerButton.setOnClickListener(this);
 
@@ -151,6 +160,13 @@ public class TextModActivity extends ActionBarActivity implements View.OnClickLi
             reversedS = new StringBuffer(reversedS).reverse().toString();
             editText.setText(reversedS);
         }
+
+        if(v.getId() == R.id.button6) {
+            Editable text = this.editText.getText();
+
+            this.editText.setText(text.toString().toUpperCase());
+        }
+        
     }
 
 
